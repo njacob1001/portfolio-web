@@ -1,28 +1,28 @@
 ---
 const items = [
   {
-    title: "Work",
+    title: 'Work',
     description: "I'm a software engineer at a startup in San Francisco.",
-    link: "#work",
+    link: '#work',
   },
   {
-    title: "Skills",
+    title: 'Skills',
     description: "I'm a software engineer at a startup in San Francisco.",
-    link: "#skills",
+    link: '#skills',
   },
   {
-    title: "Tools",
-    link: "#tools",
+    title: 'Tools',
+    link: '#tools',
   },
   {
-    title: "Blog",
-    link: "#blog",
+    title: 'Blog',
+    link: '#blog',
   },
   {
-    title: "Projects",
-    link: "/projects",
+    title: 'Projects',
+    link: '/projects',
   },
-];
+]
 ---
 
 <nav
@@ -53,17 +53,17 @@ const items = [
 </nav>
 
 <script>
-  let timer: number;
-  let scrolling = false;
-  window.addEventListener("scroll", (event) => {
+  let timer: string
+  let scrolling = false
+  window.addEventListener('scroll', () => {
     if (!scrolling) {
-      document.getElementById("navbar")?.classList.add("shadow-header");
+      document.getElementById('navbar')?.classList.add('shadow-header')
     }
-    scrolling = true;
-    clearTimeout(timer);
-    timer = setTimeout(function () {
-      scrolling = false;
-      document.getElementById("navbar")?.classList.remove("shadow-header");
-    }, 500);
-  });
+    scrolling = true
+    clearTimeout(timer)
+    timer = window.setTimeout(function () {
+      scrolling = false
+      document.getElementById('navbar')?.classList.remove('shadow-header')
+    }, 500)
+  })
 </script>
