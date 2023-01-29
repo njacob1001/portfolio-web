@@ -1,0 +1,13 @@
+{
+  "tailwind-fold.autoFold": true,
+  "tailwind-fold.foldStyle": "ALL",
+  "tailwind-fold.unfoldIfLineSelected": true,
+  "tailwind-fold.supportedLanguages": [
+    "html",
+    "typescriptreact",
+    "javascriptreact",
+    "typescript",
+    "javascript",
+    "astro"
+  ]
+}
