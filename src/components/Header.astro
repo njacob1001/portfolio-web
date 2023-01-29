@@ -1,17 +1,53 @@
-<header
-  class="h-header relative flex flex-row items-center justify-center pb-24"
->
+---
+import ScrollDown from './icons/scroll-down.astro'
+
+const socialNetworks = [
+  {
+    name: 'Github',
+    url: 'https://github.com/njacob1001',
+  },
+  {
+    name: 'Linkedin',
+    url: 'https://www.linkedin.com/in/njacob1001/',
+  },
+  {
+    name: 'Medium',
+    url: 'https://medium.com/@njacob1001',
+  },
+]
+---
+
+<header class="h-header relative flex flex-col items-center justify-center">
   <h1
-    class="bg-clip-text text-transparent text-header font-black uppercase leading-none bg-gradient-to-r from-pink-500 to-violet-500"
+    class="pt-36 flex items-end bg-clip-text text-transparent text-header font-black uppercase leading-none bg-gradient-to-r from-lime-500 via-cyan-500 to-fuchsia-500 background-animate"
   >
     Jacob
     <br />
     Gonzalez
   </h1>
-  <h2 class="absolute w-96 text-2xl font-bold Header-subtitle text-gray-600">
+  <h2
+    class="absolute w-[22vw] font-bold Header-subtitle text-gray-600 text-sub-header"
+  >
     Software engineer innovate solutions for complex challenges an it could be
     awesome lets do it, maybe could be better option than others
   </h2>
+
+  <div class="grow flex flex-row items-end">
+    <div class="flex flex-col items-center">
+      <ScrollDown />
+      <nav class="pb-8">
+        <ul class="flex flex-row gap-4">
+          {
+            socialNetworks.map((item) => (
+              <li class="underline">
+                <a href={item.url}>{item.name}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
 </header>
 
 <style>
@@ -19,7 +55,27 @@
     -webkit-background-clip: text;
   }
   .Header-subtitle {
-    top: 15rem;
-    left: 62vw;
+    top: 11rem;
+    left: 63vw;
+  }
+  .Temp {
+    font-size: 1.36vw;
+  }
+
+  .background-animate {
+    background-size: 300%;
+    -webkit-animation: AnimationName 38s ease infinite;
+    -moz-animation: AnimationName 38s ease infinite;
+    animation: AnimationName 38s ease infinite;
+  }
+
+  @keyframes AnimationName {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
   }
 </style>
