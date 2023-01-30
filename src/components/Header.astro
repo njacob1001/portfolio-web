@@ -17,16 +17,16 @@ const socialNetworks = [
 ]
 ---
 
-<header class="h-header relative flex flex-col items-center justify-center">
+<header class="h-screen relative flex flex-col items-center justify-center">
   <h1
-    class="pt-36 flex items-end bg-clip-text text-transparent text-header font-black uppercase leading-none bg-gradient-to-r from-lime-500 via-cyan-500 to-fuchsia-500 background-animate"
+    class="Title grow flex items-end bg-clip-text text-transparent font-black uppercase leading-none bg-gradient-to-r from-lime-500 via-cyan-500 to-fuchsia-500 background-animate"
   >
     Jacob
     <br />
     Gonzalez
   </h1>
   <h2
-    class="absolute w-[22vw] font-bold Header-subtitle text-gray-600 text-sub-header"
+    class="Subtitle absolute w-[22vw] font-bold text-gray-600 text-sub-header"
   >
     Software engineer innovate solutions for complex challenges an it could be
     awesome lets do it, maybe could be better option than others
@@ -50,16 +50,43 @@ const socialNetworks = [
   </div>
 </header>
 
-<style>
+<style lang="scss">
   h1 {
     -webkit-background-clip: text;
   }
-  .Header-subtitle {
-    top: 11rem;
-    left: 63vw;
+
+  .Title {
+    font-size: clamp(1.5rem, 13vw, 60rem);
+    @media screen and (max-width: 1024px) {
+      font-size: clamp(1.5rem, 16vw, 60rem);
+    }
   }
-  .Temp {
-    font-size: 1.36vw;
+
+  .Subtitle {
+    font-size: clamp(1rem, 1.3vw, 6.24rem);
+    top: 50%;
+    transform: translateY(-160%);
+    left: 64vw;
+    @media screen and (max-width: 1024px) {
+      font-size: clamp(1rem, 1.7vw, 60rem);
+      transform: translateY(-170%);
+      width: 30vw;
+    }
+    @media screen and (max-width: 768px) {
+      position: initial;
+      top: initial;
+      transform: initial;
+      align-self: flex-start;
+      padding-inline: 2rem;
+      padding-block-start: 2rem;
+      font-size: 1.2rem;
+      width: 100%;
+    }
+
+    @media screen and (min-width: 1964px) {
+      border: solid 1px red;
+      transform: translateY(-140%);
+    }
   }
 
   .background-animate {

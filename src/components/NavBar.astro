@@ -27,7 +27,7 @@ const items = [
 
 <nav
   id="navbar"
-  class="flex flex-row bg-clip-padding justify-center bg-white bg-opacity-80 backdrop-blur-md backdrop-saturate-150 sticky top-0 z-10 py-4 duration-300 ease-in"
+  class="flex flex-row bg-clip-padding justify-center bg-white bg-opacity-80 backdrop-blur-md backdrop-saturate-150 fixed top-0 left-0 right-0 z-10 py-4 duration-300 ease-in"
 >
   <ul class="flex flex-row items-center">
     {
@@ -51,6 +51,14 @@ const items = [
     }
   </ul>
 </nav>
+
+<style lang="scss">
+  nav {
+    @media screen and (max-width: 650px) {
+      visibility: hidden;
+    }
+  }
+</style>
 
 <script>
   let timer: number
