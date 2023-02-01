@@ -1,6 +1,102 @@
+---
+const skills = [
+  {
+    id: 'front-end',
+    label: 'Front end',
+    text: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English",
+  },
+  {
+    id: 'backend-end',
+    label: 'Back end',
+    text: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English",
+  },
+  {
+    id: 'devops',
+    label: 'DevOps',
+    text: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English",
+  },
+  {
+    id: 'machine-learning',
+    label: 'Machine Learning',
+    text: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English",
+  },
+  {
+    id: 'teamwork',
+    label: 'Teamwork',
+    text: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English",
+  },
+]
+---
+
 <section
   id="skills"
-  class="flex items-center justify-center h-screen bg-slate-300 bg-gradient-to-r from-sky-600 to-green-600"
+  class="flex flex-col items-center justify-center min-h-screen bg-slate-300 bg-gradient-to-r from-sky-600 to-green-600"
 >
-  <div class="w-1/2 p-4 bg-white"></div>
+  <div class="grow w-full max-w-7xl">
+    <h2 class="self-start text-7xl font-black uppercase my-14 text-white">
+      Skills
+    </h2>
+    <div class="w-full p-4 bg-white flex">
+      <div id="skills" class="grow">
+        {
+          skills.map(({ label, id }) => (
+            <div class="tab cursor-default" id={id}>
+              <div class="floatingbg" />
+              <div class="overtext">{label}</div>
+            </div>
+          ))
+        }
+      </div>
+      <p class="grow">
+        It is a long established fact that a reader will be distracted by the
+        readable content of a page when looking at its layout. The point of
+        using Lorem Ipsum is that it has a more-or-less normal distribution of
+        letters, as opposed to using 'Content here, content here', making it
+        look like readable English
+      </p>
+    </div>
+  </div>
 </section>
+
+<script>
+  document.getElementById('front-end')?.classList.add('selected')
+  document.querySelectorAll('.tab').forEach((item) => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach((item) => {
+        item.classList.remove('selected')
+      })
+      item.classList.add('selected')
+    })
+  })
+</script>
+
+<style lang="scss">
+  .tab {
+    width: 230px;
+    height: 60px;
+    color: #000;
+    position: relative;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    &.selected {
+      color: #fff;
+      & .overtext {
+        position: relative;
+        color: #fff;
+        z-index: 999;
+      }
+
+      & .floatingbg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+        left: -35px;
+        top: -5px;
+
+        background-color: #000;
+      }
+    }
+  }
+</style>
