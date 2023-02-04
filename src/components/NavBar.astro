@@ -27,7 +27,7 @@ const items = [
 
 <nav
   id="navbar"
-  class="flex flex-row bg-clip-padding justify-center bg-white bg-opacity-80 backdrop-blur-md backdrop-saturate-150 fixed top-0 left-0 right-0 z-10 py-4 duration-300 ease-in"
+  class="flex flex-row bg-clip-padding justify-center bg-white bg-opacity-80 backdrop-blur-md backdrop-saturate-150 fixed top-0 left-0 right-0 z-10 py-4 duration-300 ease-out invisible Navbar-hidden"
 >
   <ul class="flex flex-row items-center">
     {
@@ -54,25 +54,43 @@ const items = [
 
 <style lang="scss">
   nav {
-    @media screen and (max-width: 650px) {
-      visibility: hidden;
+    &.Navbar-hidden {
+      transform: translateY(-100%);
+    }
+    @media screen and (min-width: 650px) {
+      visibility: visible !important;
     }
   }
 </style>
 
-<!-- 
 <script>
-  let timer: number
-  let scrolling = false
-  window.addEventListener('scroll', () => {
-    if (!scrolling) {
-      document.getElementById('navbar')?.classList.add('shadow-header')
+  const HIDDEN_CLASS = 'Navbar-hidden'
+  let lastScrollTop = 0
+  let timeoutId: number
+  const header = document.getElementById('navbar')
+
+  if (!header) throw new Error('Header not found')
+
+  const headerHeight = header.offsetHeight
+
+  function handleScroll() {
+    if (!header) throw new Error('Header not found')
+    const currentScroll = window.pageYOffset
+
+    if (currentScroll === 0) {
+      header.classList.remove(HIDDEN_CLASS)
+
+      return
     }
-    scrolling = true
-    clearTimeout(timer)
-    timer = window.setTimeout(function () {
-      scrolling = false
-      document.getElementById('navbar')?.classList.remove('shadow-header')
-    }, 1)
-  })
-</script> -->
+
+    if (currentScroll > lastScrollTop) {
+      header.classList.add(HIDDEN_CLASS)
+    } else {
+      header.classList.remove(HIDDEN_CLASS)
+    }
+    lastScrollTop = currentScroll
+  }
+
+  window.addEventListener('scroll', handleScroll)
+  handleScroll()
+</script>
