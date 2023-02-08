@@ -17,29 +17,25 @@ const socialNetworks = [
 ]
 ---
 
-<header class="h-screen relative flex flex-col items-center justify-center">
-  <h1
-    class="Title grow flex items-end bg-clip-text text-transparent font-black uppercase leading-none bg-gradient-to-r from-lime-500 via-cyan-500 to-fuchsia-500 background-animate"
-  >
+<header>
+  <h1>
     Jacob
     <br />
     Gonzalez
   </h1>
-  <h2
-    class="Subtitle absolute w-[22vw] font-bold text-gray-600 text-sub-header"
-  >
+  <h2>
     Software engineer innovate solutions for complex challenges an it could be
     awesome lets do it, maybe could be better option than others
   </h2>
 
-  <div class="grow flex flex-row items-end">
-    <div class="flex flex-col items-center">
+  <div class="expando">
+    <div class="center-column">
       <ScrollDown />
-      <nav class="pb-8">
-        <ul class="flex flex-row gap-4">
+      <nav>
+        <ul>
           {
             socialNetworks.map((item) => (
-              <li class="underline">
+              <li>
                 <a href={item.url}>{item.name}</a>
               </li>
             ))
@@ -51,17 +47,45 @@ const socialNetworks = [
 </header>
 
 <style lang="scss">
-  .Title {
+  header {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  h1 {
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-end;
+    background-clip: text;
+    color: transparent;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+    background-image: linear-gradient(
+      to bottom right,
+      #84cc16,
+      #06b6d4,
+      #d946ef
+    );
     font-size: clamp(1.5rem, 13vw, 60rem);
+    background-size: 300%;
+    animation: ColorTitleAnimation 38s ease infinite;
     @media screen and (max-width: 1024px) {
       font-size: clamp(1.5rem, 16vw, 60rem);
     }
   }
 
-  .Subtitle {
+  h2 {
+    color: var(--gray-7);
+    position: absolute;
+    width: 22vw;
+    font-weight: 700;
     font-size: clamp(1rem, 1.3vw, 6.24rem);
     top: 50%;
-    transform: translateY(-160%);
+    transform: translateY(-180%);
     left: 64vw;
     @media screen and (max-width: 1024px) {
       font-size: clamp(1rem, 1.7vw, 60rem);
@@ -80,19 +104,36 @@ const socialNetworks = [
     }
 
     @media screen and (min-width: 1964px) {
-      border: solid 1px red;
       transform: translateY(-140%);
     }
   }
 
-  .background-animate {
-    background-size: 300%;
-    -webkit-animation: AnimationName 38s ease infinite;
-    -moz-animation: AnimationName 38s ease infinite;
-    animation: AnimationName 38s ease infinite;
+  .expando {
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-end;
   }
 
-  @keyframes AnimationName {
+  .center-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav {
+    padding-bottom: var(--size-7);
+  }
+
+  ul {
+    display: flex;
+    gap: var(--size-3);
+  }
+
+  a {
+    text-decoration-line: underline;
+  }
+
+  @keyframes ColorTitleAnimation {
     0%,
     100% {
       background-position: 0% 50%;

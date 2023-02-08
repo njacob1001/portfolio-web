@@ -28,14 +28,10 @@ const skills = [
 ]
 ---
 
-<section
-  class="flex flex-col items-center justify-center min-h-screen bg-slate-300 bg-gradient-to-r from-sky-600 to-green-600"
->
-  <div class="grow w-full max-w-7xl flex flex-col">
-    <h2 class="self-start text-7xl font-black uppercase my-14 text-white mx-8">
-      Skills
-    </h2>
-    <div class="relative bg-white flex flex-col mx-8 self-stretch md:gap-4">
+<section>
+  <div class="constrain-with">
+    <h2>Skills</h2>
+    <div class="surface">
       {
         skills.map(({ label, text, id }, index) => (
           <details id={id}>
@@ -44,7 +40,7 @@ const skills = [
                 <span class="text-white relative z-10 font-bold">{label}</span>
               </div>
             </summary>
-            <div class="absolute w-4/5 top-0 right-0 bottom-0 flex justify-center items-center">
+            <div class="content">
               <p class="max-w-[500px]">{text}</p>
             </div>
           </details>
@@ -76,4 +72,59 @@ const skills = [
   })
 </script>
 
-<style lang="scss"></style>
+<style>
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #cbd5e1;
+    background-image: linear-gradient(to bottom right, #0284c7, #16a34a);
+  }
+
+  .constrain-with {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+    max-width: var(--size-lg);
+    margin-block-start: var(--size-8);
+  }
+
+  h2 {
+    align-self: flex-start;
+    font-size: var(--font-size-9);
+    font-weight: var(--font-weight-9);
+    text-transform: uppercase;
+    margin: var(--size-8) var(--size-7);
+    color: var(--gray-0);
+  }
+
+  .surface {
+    /* relative bg-white flex flex-col mx-8 self-stretch md:gap-4 */
+    position: relative;
+    background-color: var(--gray-0);
+    display: flex;
+    flex-direction: column;
+    margin-inline: var(--size-7);
+    align-self: stretch;
+    gap: var(--size-3);
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  details {
+    width: 30%;
+    margin-bottom: 20px;
+  }
+
+  .content {
+    position: absolute;
+    inset: 0 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+  }
+</style>

@@ -25,72 +25,118 @@ const items = [
 ]
 ---
 
-<nav
-  id="navbar"
-  class="flex flex-row bg-clip-padding justify-center bg-white bg-opacity-80 backdrop-blur-md backdrop-saturate-150 fixed top-0 left-0 right-0 z-10 py-4 duration-300 ease-out invisible Navbar-hidden"
->
-  <ul class="flex flex-row items-center">
-    {
-      items.map(({ title, link }, index) => (
-        <>
-          <li class="mr-4">
-            <a
-              href={link}
-              class="text-slate-800 px-6 py-2 block float-left text-lg font-medium"
-            >
-              {title}
-            </a>
-          </li>
-          {index < items.length - 1 && (
-            <li class="mr-4">
-              <div class="h-4 w-[1px] bg-slate-800" />
+<nav-bar>
+  <nav>
+    <ul>
+      {
+        items.map(({ title, link }) => (
+          <>
+            <li>
+              <a href={link}>{title}</a>
             </li>
-          )}
-        </>
-      ))
-    }
-  </ul>
-</nav>
+          </>
+        ))
+      }
+    </ul>
+  </nav>
+</nav-bar>
 
-<style lang="scss">
+<style>
   nav {
-    &.Navbar-hidden {
-      transform: translateY(-100%);
-    }
-    @media screen and (min-width: 650px) {
-      visibility: visible !important;
+    backdrop-filter: blur(12px) saturate(150%);
+    background-clip: padding-box;
+    background-color: hsl(var(--gray-0-hsl) / 80%);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    transform: translateY(-100%);
+    transition: all 0.3s ease-out;
+    width: 100vw;
+    z-index: var(--layer-2);
+  }
+
+  ul {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+
+  li:not(:last-child)::after {
+    content: ' ';
+    display: flex;
+    height: 16px;
+    width: 1px;
+    background-color: var(--gray-11);
+    margin-inline: 2rem;
+  }
+
+  a {
+    float: left;
+    display: block;
+    padding-block: var(--size-4);
+    padding-inline: var(--size-4);
+    font-weight: var(--font-weight-5);
+    color: var(--gray-11);
+  }
+
+  .navbar--visible {
+    transform: translateY(0%);
+  }
+
+  @media screen and (max-width: 650px) {
+    nav {
+      visibility: hidden;
     }
   }
 </style>
 
 <script>
-  const HIDDEN_CLASS = 'Navbar-hidden'
-  let lastScrollTop = 0
-  let timeoutId: number
-  const header = document.getElementById('navbar')
+  class MyComponent extends HTMLElement {
+    static visible_class = 'navbar--visible'
+    lastScrollTop: number
+    rafId: number | null = null
 
-  if (!header) throw new Error('Header not found')
-
-  const headerHeight = header.offsetHeight
-
-  function handleScroll() {
-    if (!header) throw new Error('Header not found')
-    const currentScroll = window.pageYOffset
-
-    if (currentScroll === 0) {
-      header.classList.remove(HIDDEN_CLASS)
-
-      return
+    constructor() {
+      super()
+      this.lastScrollTop = 0
+      this.handleScroll = this.handleScroll.bind(this)
     }
 
-    if (currentScroll > lastScrollTop) {
-      header.classList.add(HIDDEN_CLASS)
-    } else {
-      header.classList.remove(HIDDEN_CLASS)
+    connectedCallback() {
+      window.addEventListener('scroll', this.handleScroll)
+      this.handleScroll()
     }
-    lastScrollTop = currentScroll
+
+    disconnectedCallback() {
+      window.removeEventListener('scroll', this.handleScroll)
+      cancelAnimationFrame(this.rafId!)
+    }
+
+    handleScroll() {
+      this.rafId = requestAnimationFrame(() => {
+        const currentScroll = window.pageYOffset
+
+        if (currentScroll <= 0) {
+          this.children[0].classList.add(MyComponent.visible_class)
+          return
+        }
+
+        if (currentScroll > this.lastScrollTop) {
+          this.children[0].classList.remove(MyComponent.visible_class)
+        } else {
+          this.children[0].classList.add(MyComponent.visible_class)
+        }
+        this.lastScrollTop = currentScroll
+      })
+    }
   }
 
-  window.addEventListener('scroll', handleScroll)
-  handleScroll()
+  customElements.define('nav-bar', MyComponent)
 </script>

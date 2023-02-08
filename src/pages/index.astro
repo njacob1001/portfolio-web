@@ -6,9 +6,16 @@ import Tabs from '../components/Tabs.astro'
 ---
 
 <Layout title="Software Engineer | Jacob Gonzalez">
-  <main class="flex flex-col">
-    <NavBar />
+  <NavBar />
+  <main class="main">
     <Header />
     <Tabs />
   </main>
 </Layout>
+
+<style>
+  .main {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
