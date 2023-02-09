@@ -102,21 +102,27 @@ const items = [
     static visible_class = 'navbar--visible'
     lastScrollTop: number
     rafId: number | null = null
+    allowScrollListener: boolean
 
     constructor() {
       super()
       this.lastScrollTop = 0
+      this.allowScrollListener = window.innerWidth > 650
       this.handleScroll = this.handleScroll.bind(this)
     }
 
     connectedCallback() {
-      window.addEventListener('scroll', this.handleScroll)
-      this.handleScroll()
+      if (this.allowScrollListener) {
+        window.addEventListener('scroll', this.handleScroll)
+        this.handleScroll()
+      }
     }
 
     disconnectedCallback() {
-      window.removeEventListener('scroll', this.handleScroll)
-      cancelAnimationFrame(this.rafId!)
+      if (this.allowScrollListener) {
+        window.removeEventListener('scroll', this.handleScroll)
+        cancelAnimationFrame(this.rafId!)
+      }
     }
 
     handleScroll() {
