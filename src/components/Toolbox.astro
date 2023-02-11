@@ -1,0 +1,160 @@
+---
+import DynamicIcon from './icons/DynamicIcon.astro'
+
+const tools = Array.from({ length: 20 })
+
+tools[0] = {
+  title: 'Github Action',
+  icon: 'ghactions',
+}
+
+tools[5] = {
+  title: 'AWS',
+  icon: 'aws',
+}
+
+tools[7] = {
+  title: 'React',
+  icon: 'react',
+}
+
+tools[8] = {
+  title: 'Docker',
+  icon: 'docker',
+}
+
+tools[10] = {
+  title: 'Kotlin',
+  icon: 'kotlin',
+}
+tools[14] = {
+  title: 'Redux',
+  icon: 'redux',
+}
+tools[15] = {
+  title: 'Golang',
+  icon: 'golang',
+}
+tools[17] = {
+  title: 'Rust',
+  icon: 'rust',
+}
+---
+
+<section>
+  <article>
+    <h2>Toolbox</h2>
+    <p>
+      lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod nunc
+      euismod, aliquam nisl nec, ultricies nisl. Sed euismod nunc euismod,
+      aliquam nisl nec, ultricies nisl. Sed euismod nunc euismod, aliquam nisl
+      nec, ultricies nisl. Sed euismod nunc euismod, aliquam nisl nec, ultricies
+      nisl. Sed euismod nunc euismod, aliquam nisl nec, ultricies nisl. Sed
+      euismod nunc euismod, aliquam nisl nec, ultricies nisl.
+    </p>
+    <button>Dave into my tools</button>
+  </article>
+  <article class="table">
+    {
+      tools.map((tool: any) =>
+        tool ? (
+          <div class="tool">
+            <h3>{tool.title}</h3>
+            <DynamicIcon name={tool.icon} />
+          </div>
+        ) : (
+          <div />
+        )
+      )
+    }
+  </article>
+</section>
+
+<style lang="scss">
+  section {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    max-width: var(--size-lg);
+    display: flex;
+  }
+  h2 {
+    align-self: flex-start;
+    font-size: var(--fluid-font-size-9);
+    color: var(--gray-12);
+    text-transform: uppercase;
+    color: var(--gray-12);
+    font-weight: var(--font-weight-9);
+    margin-block-end: var(--size-5);
+    padding-inline: var(--size-4);
+  }
+  article {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .table {
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    overflow: visible;
+    align-self: flex-start;
+    display: grid;
+    margin-block-start: var(--size-10);
+    margin-inline-start: var(--size-8);
+    margin-inline-end: var(--size-5);
+    grid-template-rows: repeat(5, 5em);
+    grid-template-columns: repeat(4, 5em);
+    grid-template-areas:
+      'item-1 item-2 item-3 item-4'
+      'item-5 item-6 item-7 item-8'
+      'item-9 item-10 item-11 item-12'
+      'item-13 item-14 item-15 item-16'
+      'item-17 item-18 item-19 item-20';
+  }
+
+  h3 {
+    font-size: 0.7em;
+    font-weight: var(--font-weight-6);
+  }
+
+  .table .tool {
+    background-color: var(--gray-10);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.3em;
+    padding-bottom: 0.4em;
+  }
+
+  p {
+    color: var(--gray-12);
+    padding-inline: var(--size-4);
+  }
+
+  button {
+    align-self: flex-start;
+    margin-inline: var(--size-4);
+    padding: var(--size-2) var(--size-8);
+    margin-block-start: var(--size-5);
+    color: var(--gray-0);
+    background-image: linear-gradient(45deg, #5680e9 0%, #8860d0 100%);
+  }
+
+  @for $i from 1 through 20 {
+    .table > .tool:nth-child(#{$i}) {
+      grid-area: item-#{$i};
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .table {
+      margin-block-start: var(--size-9);
+      align-self: center;
+      font-size: clamp(1.3rem, 1.5vw, 5rem);
+    }
+  }
+</style>
