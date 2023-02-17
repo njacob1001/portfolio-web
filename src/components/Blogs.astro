@@ -19,7 +19,9 @@ const data = await fetch(
         <li>
           <img src={item.thumbnail} alt="cool" />
           <h3>{item.title}</h3>
-          <a href={item.link}>Read →</a>
+          <a href={item.link} rel="noopener" target="_blank">
+            Read →
+          </a>
         </li>
       ))
     }

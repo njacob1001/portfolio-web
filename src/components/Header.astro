@@ -36,7 +36,9 @@ const socialNetworks = [
           {
             socialNetworks.map((item) => (
               <li>
-                <a href={item.url}>{item.name}</a>
+                <a href={item.url} target="_blank" rel="noopener">
+                  {item.name}
+                </a>
               </li>
             ))
           }
