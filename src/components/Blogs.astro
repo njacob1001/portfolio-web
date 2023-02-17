@@ -10,7 +10,7 @@ const data = await fetch(
   .catch((err) => console.log(err))
 ---
 
-<section>
+<section id="blog">
   <h2>Blog</h2>
 
   <ul>
@@ -35,8 +35,9 @@ const data = await fetch(
     max-width: var(--size-lg);
     display: flex;
     flex-direction: column;
-    margin-block-start: var(--size-5);
-    margin-block-end: var(--size-10);
+    margin-block-start: var(--size-10);
+    margin-block-end: var(--size-12);
+    padding-inline: var(--size-4);
   }
 
   h2 {
@@ -50,6 +51,7 @@ const data = await fetch(
   }
 
   ul {
+    overflow-x: auto;
     display: flex;
   }
 
