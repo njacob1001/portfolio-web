@@ -13,19 +13,21 @@ const data = await fetch(
 <section id="blog">
   <h2>Blog</h2>
 
-  <ul>
-    {
-      data.map((item: any) => (
-        <li>
-          <img src={item.thumbnail} alt={item.title} />
-          <h3>{item.title}</h3>
-          <a href={item.link} rel="noopener" target="_blank">
-            Read →
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+  <div class="scrollable">
+    <ul>
+      {
+        data.map((item: any) => (
+          <li>
+            <img src={item.thumbnail} alt={item.title} />
+            <h3>{item.title}</h3>
+            <a href={item.link} rel="noopener" target="_blank">
+              Read →
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </section>
 
 <style>
@@ -50,14 +52,23 @@ const data = await fetch(
     margin-block-end: var(--size-5);
   }
 
-  ul {
+  .scrollable {
+    display: block;
+    overflow-y: hidden;
     overflow-x: auto;
     display: flex;
+    padding-block-end: var(--size-5);
+  }
+
+  ul {
+    display: flex;
+    gap: var(--size-9);
   }
 
   li {
     width: var(--size-14);
     color: var(--gray-12);
+    padding: 0;
   }
 
   img {
