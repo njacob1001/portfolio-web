@@ -14,7 +14,8 @@
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx,.astro"
   },
   "dependencies": {
-    "astro": "^2.0.8",
+    "@astrojs/image": "^0.15.1",
+    "astro": "^2.0.15",
     "astro-i18next": "^1.0.0-beta.17",
     "autoprefixer": "^10.4.13",
     "cssnano": "^5.1.14",
