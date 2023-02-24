@@ -6,38 +6,54 @@ const tools = Array.from({ length: 20 })
 tools[0] = {
   title: 'Github Action',
   icon: 'ghactions',
+  color: 'purple',
+  pattern: 5,
 }
 
 tools[5] = {
   title: 'AWS',
   icon: 'aws',
+  color: 'orange',
+  pattern: 1,
 }
 
 tools[7] = {
   title: 'React',
   icon: 'react',
+  color: 'blue',
+  pattern: 2,
 }
 
 tools[8] = {
   title: 'Docker',
   icon: 'docker',
+  color: 'sea',
+  pattern: 4,
 }
 
 tools[10] = {
   title: 'Kotlin',
   icon: 'kotlin',
+  color: 'violet',
+  pattern: 5,
 }
 tools[14] = {
   title: 'Redux',
   icon: 'redux',
+  color: 'blue',
+  pattern: 2,
 }
 tools[15] = {
   title: 'Golang',
   icon: 'golang',
+  color: 'green',
+  pattern: 3,
 }
 tools[17] = {
   title: 'Rust',
   icon: 'rust',
+  color: 'orange',
+  pattern: 1,
 }
 ---
 
@@ -58,7 +74,7 @@ tools[17] = {
     {
       tools.map((tool: any) =>
         tool ? (
-          <div class="tool">
+          <div class={`tool gradient gradient--${tool.color}`}>
             <h3>{tool.title}</h3>
             <DynamicIcon name={tool.icon} />
           </div>
@@ -111,12 +127,20 @@ tools[17] = {
   }
 
   h3 {
+    position: relative;
+    z-index: var(--layer-1);
+    color: inherit;
     font-size: 0.7em;
     font-weight: var(--font-weight-6);
   }
 
+  :global(.tool svg) {
+    position: relative;
+    z-index: var(--layer-4);
+  }
+
   .table .tool {
-    background-color: var(--gray-10);
+    color: var(--gray-0);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -157,5 +181,85 @@ tools[17] = {
       align-self: center;
       font-size: clamp(1rem, 1.5vw, 5rem);
     }
+  }
+
+  .gradient {
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0px 0px 0px 0px;
+      background-color: var(--gray-10);
+      z-index: 0;
+      opacity: 1;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0px 0px 0px 0px;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    &--orange {
+      background: linear-gradient(45deg, #d62828 0%, #f77f00 87.07%);
+      &::after {
+        background-image: url('assets/pattern-1.png');
+      }
+    }
+
+    &--blue {
+      background: linear-gradient(45deg, #0078ff 0%, #b721ff 96.98%);
+      &::after {
+        background-image: url('assets/pattern-2.png');
+      }
+    }
+
+    &--green {
+      background: linear-gradient(216.07deg, #00acd8 11.44%, #3ae966 100%);
+      &::after {
+        background-image: url('assets/pattern-3.png');
+      }
+    }
+
+    &--sea {
+      background: linear-gradient(50.03deg, #0157ff 0%, #0db7ed 66.68%);
+      &::after {
+        background-image: url('assets/pattern-4.png');
+      }
+    }
+
+    &--purple {
+      background: linear-gradient(45deg, #2a03d0 0%, #fe05c8 100%);
+      &::after {
+        background-image: url('assets/pattern-5.png');
+      }
+    }
+
+    &--violet {
+      background: linear-gradient(45deg, #e44857, #c711e1, #7f52ff);
+      &::after {
+        background-image: url('assets/pattern-5.png');
+      }
+    }
+
+    &:hover {
+      &::before {
+        opacity: 0;
+      }
+
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  :global(.tool:hover path) {
+    fill: var(--gray-0);
+    color: var(--gray-0);
+    transition: color 0.3s ease-in-out;
   }
 </style>
