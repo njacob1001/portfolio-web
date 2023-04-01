@@ -2,7 +2,8 @@
 const items = [
   {
     title: 'SoftServe',
-    description: "As a Senior Software Engineer I have played a key role in enhancing the user experience and functionality of a leading online travel platform that serves over 19 million users worldwide. I have successfully contributed to the development and implementation of new features while keeping the platform up to date with the latest best practices and technologies. My extensive experience has allowed me to maintain excellent communication with various stakeholders and teams across the globe, creating high-impact features that drive business value. Proficient in programming languages such as Kotlin, Typescript, and Golang, as well as web development frameworks and tools, I have developed and maintained scalable, high-performing, and user-friendly applications. My strong background in Agile methodologies and DevOps practices, coupled with my ability to adapt to new technologies and learn quickly, makes me a valuable asset to any team seeking a passionate and innovative problem-solver with a proven track record in delivering high-quality software solutions.",
+    description:
+      'As a Senior Software Engineer I have played a key role in enhancing the user experience and functionality of a leading online travel platform that serves over 19 million users worldwide. I have successfully contributed to the development and implementation of new features while keeping the platform up to date with the latest best practices and technologies. My extensive experience has allowed me to maintain excellent communication with various stakeholders and teams across the globe, creating high-impact features that drive business value. Proficient in programming languages such as Kotlin, Typescript, and Golang, as well as web development frameworks and tools, I have developed and maintained scalable, high-performing, and user-friendly applications. My strong background in Agile methodologies and DevOps practices, coupled with my ability to adapt to new technologies and learn quickly, makes me a valuable asset to any team seeking a passionate and innovative problem-solver with a proven track record in delivering high-quality software solutions.',
     //'As Senior Software Engineer I worked on a big platform of travels with 19 millon users, I had to improve the user experience, create new features and always keep the platform up to date with the best practices and technologies, I created features with high business impact on the company following the a grat communication with different stake holders and teams cross the world.',
   },
   {
@@ -113,20 +114,18 @@ void main() {
 `
 ---
 
-<cards-component>
-  <section id="work">
-    <h2>Work Experience</h2>
-    {
-      items.map(({ title, description }, index) => (
-        <article>
-          {index === 0 && <canvas class="glslCanvas" data-fragment={shader} />}
-          <h3>{title}</h3>
-          <p>{description}</p>
-        </article>
-      ))
-    }
-  </section>
-</cards-component>
+<section id="work">
+  <h2>Work Experience</h2>
+  {
+    items.map(({ title, description }, index) => (
+      <article>
+        {index === 0 && <canvas class="glslCanvas" data-fragment={shader} />}
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </article>
+    ))
+  }
+</section>
 
 <style>
   section {
