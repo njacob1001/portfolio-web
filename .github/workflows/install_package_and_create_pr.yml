@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       package_name:
-        description: 'Package name to be installed'
+        description: "Package name to be installed"
         required: true
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: ".nvmrc"
 
       - name: Install Yarn
         run: npm install -g yarn
@@ -41,14 +41,16 @@ jobs:
 
       - name: Create branch and commit changes
         run: |
-          BRANCH_NAME="add-${{ github.event.inputs.package_name }}-$(date +%s)"
+          PACKAGE_NAME=$(echo "${{ github.event.inputs.package_name }}" | sed 's/\//-/g')
+          BRANCH_NAME="add-$PACKAGE_NAME-$(date +%s)"
           git checkout -b $BRANCH_NAME
           git add .
           git commit -m "chore: install ${{ github.event.inputs.package_name }}"
 
       - name: Push branch
         run: |
-          BRANCH_NAME="add-${{ github.event.inputs.package_name }}-$(date +%s)"
+          PACKAGE_NAME=$(echo "${{ github.event.inputs.package_name }}" | sed 's/\//-/g')
+          BRANCH_NAME="add-$PACKAGE_NAME-$(date +%s)"
           git push origin $BRANCH_NAME
 
       - name: Create pull request
