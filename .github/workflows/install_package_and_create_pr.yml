@@ -41,7 +41,7 @@ jobs:
 
       - name: Create branch and commit changes
         run: |
-          PACKAGE_NAME=$(echo "${{ github.event.inputs.package_name }}" | sed 's/\//-/g')
+          PACKAGE_NAME=$(echo "${{ github.event.inputs.package_name }}" | tr -d '@' | sed 's/\//-/g')
           BRANCH_NAME="add-$PACKAGE_NAME-$(date +%s)"
           git checkout -b $BRANCH_NAME
           git add .
@@ -49,7 +49,7 @@ jobs:
 
       - name: Push branch
         run: |
-          PACKAGE_NAME=$(echo "${{ github.event.inputs.package_name }}" | sed 's/\//-/g')
+          PACKAGE_NAME=$(echo "${{ github.event.inputs.package_name }}" | tr -d '@' | sed 's/\//-/g')
           BRANCH_NAME="add-$PACKAGE_NAME-$(date +%s)"
           git push origin $BRANCH_NAME
 
