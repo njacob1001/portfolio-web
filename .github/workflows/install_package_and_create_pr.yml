@@ -32,7 +32,7 @@ jobs:
 
       - name: Setup Git authentication
         run: |
-          git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git remote set-url origin https://${{ secrets.TOKEN }}@github.com/${{ github.repository }}
 
       - name: Configure Git
         run: |
