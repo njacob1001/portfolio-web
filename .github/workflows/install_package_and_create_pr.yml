@@ -36,7 +36,7 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config user.name "GitHub Actions"
+          git config user.name "Jacob Gonzalez"
           git config user.email "njacob1001@gmail.com"
 
       - name: Create branch and commit changes
