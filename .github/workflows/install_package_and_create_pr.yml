@@ -30,6 +30,10 @@ jobs:
       - name: Add package
         run: yarn add ${{ github.event.inputs.package_name }}
 
+      - name: Setup Git authentication
+        run: |
+          git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+
       - name: Configure Git
         run: |
           git config user.name "GitHub Actions"
