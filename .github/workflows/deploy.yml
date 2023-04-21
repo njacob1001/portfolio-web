@@ -14,6 +14,9 @@ permissions:
   pages: write
   id-token: write
 
+env:
+  GA_MEASUREMENT_ID: G-0QCYRP2X2V
+
 jobs:
   build:
     runs-on: ubuntu-latest
