@@ -1,4 +1,6 @@
-# Welcome to [Astro](https://astro.build)
+# My personal porfolio
+
+[![Deploy to GitHub Pages](https://github.com/njacob1001/portfolio-web/actions/workflows/deploy.yml/badge.svg)](https://github.com/njacob1001/portfolio-web/actions/workflows/deploy.yml)
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
 [![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/withastro/astro/tree/latest/examples/basics)
