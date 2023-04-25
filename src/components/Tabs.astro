@@ -99,8 +99,6 @@ const skills = [
 
       if (index === -1) return
 
-      const { top, left, width } = reference.getClientRects()[0]
-      console.log(reference.getClientRects())
       if (!this.floating) return
       // calc(var(--float-level, 0) * 4rem + var(--size-7))
       this.floating.style.setProperty('--float-level', `${index}`)
